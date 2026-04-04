@@ -6,6 +6,7 @@ export default function QuestionTimer({ timeout, onTimeout, mode }) {
   const [remainingTime, setRemainingTime] = useState(timeout);
 
   useEffect(() => {
+    console.log('SETTING TIMEOUT');
     const timer = setTimeout(onTimeout, timeout);
 
     return () => clearTimeout(timer);
@@ -13,6 +14,7 @@ export default function QuestionTimer({ timeout, onTimeout, mode }) {
   // useEffect here needs them as dependencies because they are props, and they can change between renders. If they change, we want to set up a new timeout with the new values.
 
   useEffect(() => {
+    console.log('SETTING INTERVAL');
     const interval = setInterval(() => {
       setRemainingTime((prevRemainingTime) => prevRemainingTime - 100);
     }, 100);

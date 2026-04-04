@@ -1,8 +1,7 @@
 import { useState } from 'react';
 
-import QuestionTimer from './QuestionTimer';
-import Answers from './Answers';
-
+import QuestionTimer from './QuestionTimer.jsx';
+import Answers from './Answers.jsx';
 import QUESTIONS from '../questions.js';
 
 export default function Question({ index, onSelectAnswer, onSkipAnswer }) {
@@ -41,7 +40,7 @@ export default function Question({ index, onSelectAnswer, onSkipAnswer }) {
 
   let answerState = '';
 
-  if (answer.selectedAnswer && answer.isCorrect === null) {
+  if (answer.selectedAnswer && answer.isCorrect !== null) {
     answerState = answer.isCorrect ? 'correct' : 'wrong';
   } else if (answer.selectedAnswer) {
     answerState = 'answered';
@@ -51,7 +50,7 @@ export default function Question({ index, onSelectAnswer, onSkipAnswer }) {
     <div id='question'>
       <QuestionTimer
         key={timer}
-        timeout={10000}
+        timeout={timer}
         onTimeout={answer.selectedAnswer === '' ? onSkipAnswer : null}
         mode={answerState}
       />

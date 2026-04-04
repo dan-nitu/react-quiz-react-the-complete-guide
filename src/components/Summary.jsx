@@ -2,13 +2,13 @@ import quizCompleteImg from '../assets/quiz-complete.png';
 import QUESTIONS from '../questions.js';
 
 export default function Summary({ userAnswers }) {
-  const skippedAnswsers = userAnswers.filter((answer) => answer === null);
+  const skippedAnswers = userAnswers.filter((answer) => answer === null);
   const correctAnswers = userAnswers.filter(
     (answer, index) => answer === QUESTIONS[index].answers[0],
   );
 
   const skippedAnswersShare = Math.round(
-    (skippedAnswsers.length / userAnswers.length) * 100,
+    (skippedAnswers.length / userAnswers.length) * 100,
   );
   const correctAnswersShare = Math.round(
     (correctAnswers.length / userAnswers.length) * 100,
