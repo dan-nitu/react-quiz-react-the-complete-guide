@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export default function QuestionTimer({ timeout, onTimeout }) {
+export default function QuestionTimer({ timeout, onTimeout, mode }) {
   // ^ onTimeout is supposed to be a function received as a prop, to be called on setTimeout
 
   const [remainingTime, setRemainingTime] = useState(timeout);
@@ -21,5 +21,12 @@ export default function QuestionTimer({ timeout, onTimeout }) {
   }, []);
   // useEffect does not have any dependencies, so it will only run once, when the component is first rendered. It sets up an interval that runs every 100 milliseconds, and on each interval it updates the remainingTime state by subtracting 100 milliseconds from the previous remaining time. It's the same value which keeps decreasing.
 
-  return <progress id='question-time' value={remainingTime} max={timeout} />;
+  return (
+    <progress
+      id='question-time'
+      value={remainingTime}
+      max={timeout}
+      className={mode}
+    />
+  );
 }
